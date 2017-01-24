@@ -2,8 +2,7 @@
 require_once("class/apiFunc.php");
 require_once("config/define.php");
 $apiFunc = new apiFunc();
-
-if( $_SESSION["active"] !== "on"){
+$_SESSION["active"] = '';
 
     if($apiFunc->is_post()){
         $pass = filter_input(INPUT_POST, 'pass');
@@ -18,7 +17,7 @@ if( $_SESSION["active"] !== "on"){
             header("Location: " . $_SERVER['PHP_SELF']);
         }
     }
-}
+
 ?>
 
 <!doctype html>
@@ -35,20 +34,17 @@ if( $_SESSION["active"] !== "on"){
 <body>
     <?php
     if( $_SESSION["active"] !== "on"){
-        if($apiFunc->is_post()){
-        }else{
-            echo '<div id="login_box" class="container">';
-                echo '<div class="row">';
-                    echo '<div class="col-xs-12">';
-                    echo '<form method="post" action="">';
-                        echo '<label for="pass">Login:</label> ';
-                        echo '<input type="password" name="pass">';
-                    echo '</form>';
-                echo '</div>';
-                echo '</div>';
-            echo '</div>';
-            return;
-        }
+        echo '<div id="login_box" class="container">';
+        echo '<div class="row">';
+        echo '<div class="col-xs-12">';
+        echo '<form method="post" action="">';
+        echo '<label for="pass">Login:</label> ';
+        echo '<input type="password" name="pass">';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        return;
     }
     ?>
     <div class="board">
