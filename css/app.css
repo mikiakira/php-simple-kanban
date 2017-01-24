@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(0, 174, 204);
+    display: block;
+    height: 1200px;
+}
+.board,panel_area {
+    width: auto;
+    min-width: 90%;
+    height: auto;
+    overflow-x: scroll;
+}
+.pannel {
+    width: 240px;
+    min-height: 500px;
+    height: auto;
+    display: block;
+    float: left;
+    margin: 8px;
+    padding: 8px;
+}
+.panel-heading {
+    padding: 4px 10px;
+}
+.card {
+    width: 98%;
+    height: 70px;
+    margin: auto;
+    text-align: left;
+    display: block;
+    margin: 4px 4px 8px 4px;
+    padding: 4px;
+}
+#hidden {
+    display: none;
+}
+
+#board_title {
+    width: auto;
+    min-width: 200px;
+    float: left;
+}
+#board_title h1 {
+    font-size:20px;
+    font-weight: bold;
+    color: #fff;
+    padding: 4px;
+}
+
+#board_title h1:hover {
+    opacity: 0.55; 
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* ボード一覧 */
+#board_all_list {
+    width: auto;
+    height: auto;
+    min-width: 200px;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    z-index: 100;
+}
+
+#board_all_list li {
+    cursor: pointer;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.card.panel.panel-default {
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+#contents_toggle {
+    font-weight: normal;
+    text-decoration: underline;
+    color: #444;
+    cursor: pointer;
+}
+
+.sp-replacer {
+    margin-bottom: 10px;
+}
+
+#logout {
+    float: right;
+}
+
+#login_box {
+    margin-top: 200px;
+}
+
+#login_box label {
+    color: #fff;
+}
