@@ -20,7 +20,12 @@ $(function() {
     $(document).on("click", ".panel h2", function () {
         var id = $(this).attr("data-id");
         $("#panel-modal").attr("data-id", id);
-        $('#panel-modal #panel_title_text').val($(this).html());
+        if(id ==='new'){
+            $('#panel-modal #panel_title_text').val('');
+        }else{
+            $('#panel-modal #panel_title_text').val($(this).html());
+        }
+
         $('#panel-modal').modal('show');
     });
 

@@ -79,7 +79,7 @@ $_SESSION["active"] = '';
         <div class="panel per_panel">
             <div class="pannel panel panel-default">
                 <div class="panel-heading">
-                    <h2 data-id="new">title00</h2>
+                    <h2 data-id="new">New</h2>
                 </div>
                 <div class="panel-body">
 

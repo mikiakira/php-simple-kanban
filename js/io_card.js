@@ -122,16 +122,16 @@ $(function() {
 
     // カード･モーダルの削除ボタン押下で削除確認を表示
     $(document).on("click", "#card-edit .modal-dialog .modal-footer button#delete-btn", function () {
-        if(window.confirm('このカードを削除します。よろしいですか？')){
-		    var card_id = $('#card-edit').attr('data-id');
-		    var panel_id = $('#card-edit').attr('card_panel_id');
-		    exePost("cards", "del", card_id, "", "", "", "").done(function() {
-		        $("#panel_area .panel h2[data-id='"+panel_id+"']").parent().parent().find(".panel-body .card[cardId='"+card_id+"']").remove();
-		        $('#card-edit').modal('hide');
-		    }).fail(function() {
+        if (window.confirm('このカードを削除します。よろしいですか？')) {
+            var card_id = $('#card-edit').attr('data-id');
+            var panel_id = $('#card-edit').attr('card_panel_id');
+            exePost("cards", "del", card_id, "", "", "", "").done(function () {
+                $("#panel_area .panel h2[data-id='" + panel_id + "']").parent().parent().find(".panel-body .card[cardId='" + card_id + "']").remove();
+                $('#card-edit').modal('hide');
+            }).fail(function () {
                 alert("system Error");
             });
-	    }
+        }
     });
 
 
@@ -174,13 +174,12 @@ $(function() {
             var panels_id = $("#panel_select").val();
             var id = $("#card-move-modal").attr('data-id');
             var mode = $("input[name='q']:radio:checked").val();
-            console.log(mode);
-		    exePost("cards", mode, id, panels_id, "", "", "").done(function() {
-		        $("#panel_area").html('');
-		        var board_id = $('#board_title').attr("data-id");
-		        getPanels(board_id);
-		        $('#card-move-modal').modal('hide');
-		    }).fail(function() {
+            exePost("cards", mode, id, panels_id, "", "", "").done(function () {
+                $("#panel_area").html('');
+                var board_id = $('#board_title').attr("data-id");
+                getPanels(board_id);
+                $('#card-move-modal').modal('hide');
+            }).fail(function () {
                 alert("system Error");
             });
         });
