@@ -49,12 +49,14 @@ body {
 }
 
 #board_title h1:hover {
-    opacity: 0.55; 
+    opacity: 0.55;
     cursor: pointer;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
     margin: 0;
     line-height: 1;
     cursor: pointer;
@@ -114,4 +116,13 @@ input {
 
 #login_box label {
     color: #fff;
+}
+
+.btn.btn-default.card_add {
+    color: #ccc;
+}
+
+.btn.btn-default.card_add:hover {
+    color: #666;
+    text-decoration: underline;
 }

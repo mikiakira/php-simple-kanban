@@ -29,7 +29,7 @@ $_SESSION["active"] = '';
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="css/spectrum.min.css">
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/app.min.css" />
 </head>
 <body>
     <?php
