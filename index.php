@@ -30,6 +30,7 @@ $_SESSION["active"] = '';
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="css/spectrum.min.css">
     <link rel="stylesheet" href="css/app.min.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
 <body>
     <?php
@@ -262,7 +263,7 @@ $_SESSION["active"] = '';
                     <div class="form-group">
                         <label for="fieldName" class="col-sm-2 control-label">名前</label>
                         <div class="col-sm-10">
-                            <input type="text" id="panel_title_text">
+                            <input type="text" id="panel_title_text" />
                         </div>
                     </div>
                 </div>
