@@ -51,11 +51,11 @@ $(function() {
 
     // ボード・モーダルの削除ボタンをクリックしたら確認する
     $(document).on("click", "#board-modal #delete-btn", function () {
-        if(window.confirm('このボードを削除します。よろしいですか？')){
-		    var id = $('#board_title').attr("data-id");
-		    exePost("boards", "del", id, "", "", "", "").done(function() {
-		        // ボードを削除したので、初期表示をやり直す
-		        exePost("boards", "first", "", "", "").done(function(data) {
+        if (window.confirm('このボードを削除します。よろしいですか？')) {
+            var id = $('#board_title').attr("data-id");
+            exePost("boards", "del", id, "", "", "", "").done(function () {
+                // ボードを削除したので、初期表示をやり直す
+                exePost("boards", "first", "", "", "").done(function (data) {
                     var detail = $.parseJSON(data);
                     $('#board_title h1').html(detail['title']);
                     $('#board_title').attr('data-id', detail['id']);
@@ -65,15 +65,15 @@ $(function() {
 
                     // ボードに関連するパネルを表示する
                     getPanels(detail['id']);
-                }).fail(function(data) {
+                }).fail(function (data) {
                     alert("system Error");
                 });
-		        getBoardList(); // ボード一覧を取得しなおす
-		        $('#board-modal').modal('hide'); // モーダルを閉じる
-		    }).fail(function() {
+                getBoardList(); // ボード一覧を取得しなおす
+                $('#board-modal').modal('hide'); // モーダルを閉じる
+            }).fail(function () {
                 alert("system Error");
             });
-	    }
+        }
     });
 });
 
