@@ -36,9 +36,14 @@ $(function() {
         exePost("panels", "save", panel_id, panel_title_text, board_id).done(function(data) {
             var detail = $.parseJSON(data);
             // タイトルを保存したデータで更新する
-            $("#panel_area .panel h2[data-id='"+panel_id+"']").html(detail['title']);
+            // new の時は、data-id = new を対象に、それ以外は既存のIDで検索する
+            console.log(detail['title']);
             if(panel_id === 'new'){
-                $("#panel_area .panel h2").attr(detail['id']);
+                $("#panel_area .panel h2[data-id='new']").html(detail['title']);
+                $("#panel_area .panel h2[data-id='new']").attr("data-id", detail['id']);
+            }else{
+                $("#panel_area .panel h2[data-id='"+panel_id+"']").attr("data-id", detail['id']);
+                $("#panel_area .panel h2[data-id='"+panel_id+"']").html(detail['title']);
             }
             $('#panel-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
