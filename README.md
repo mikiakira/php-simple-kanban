@@ -1,6 +1,8 @@
 php-simple-kanban
 ====
 
+<img src="https://github.com/mikiakira/imageArchive/blob/master/img/php-simple-kanban.png?raw=true" width="50%">
+
 ## Description
 Trello にインスパイアされて、「かんばん」の機能のみを PHP でクローンしたウェブアプリ
 
