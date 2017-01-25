@@ -80,7 +80,17 @@ $(function() {
             $('body').css('background-color', detail['board_color'])
             $("input#board_title_text").val(detail['title']);
             $("input#board_color").val(detail['board_color']);
-
+            $("input#board_color").spectrum({
+                showSelectionPalette: true,
+                preferredFormat: "hex",
+                showInput: true,
+                showInitial: true,
+                showPaletteOnly: true, // 外観をパレットのみにする
+                palette: [// パレットで使う色を指定
+                    ["#ffffff", "#cccccc", "#999999", "#666666", "#333333", "#000000"],
+                    ["#f44336", "#ff9800", "#ffeb3b", "#8bc34a", "#4caf50", "#03a9f4", "#2196f3"]
+                ]
+            });
             // ボードに関連するパネルを表示する
             getPanels(detail['id']);
         }
@@ -169,7 +179,17 @@ function getBoard(id){
         $('body').css('background-color', detail['board_color'])
         $("input#board_title_text").val(detail['title']);
         $("input#board_color").val(detail['board_color']);
-
+        $("input#board_color").spectrum({
+            showSelectionPalette: true,
+            preferredFormat: "hex",
+            showInput: true,
+            showInitial: true,
+            showPaletteOnly: true, // 外観をパレットのみにする
+            palette: [// パレットで使う色を指定
+                ["#ffffff", "#cccccc", "#999999", "#666666", "#333333", "#000000"],
+                ["#f44336", "#ff9800", "#ffeb3b", "#8bc34a", "#4caf50", "#03a9f4", "#2196f3"]
+            ]
+        });
         // パネルをクリアする
         $("#panel_area").html('');
 
