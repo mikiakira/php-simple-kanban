@@ -4,12 +4,14 @@ $(function() {
     $(document).on("click", "#board_title h1", function () {
         $('#board-modal').modal('show');
     });
-    
+
     // ボードの追加ボタンを押下したら編集モーダルを開く
     $(document).on("click", "#board_add", function () {
+        $("#board_new_title_text").val('');
+        $("#board_new_color").val('#000');
         $('#board-add-modal').modal('show');
-    });    
-    
+    });
+
     // ボード・更新用モーダルの保存ボタンをクリックしたら保存処理を行う
     $(document).on("click", "#board-modal #save-btn", function () {
         var board_title_text = $('#board_title_text').val();
@@ -27,7 +29,7 @@ $(function() {
             alert("system Error");
         });
     });
-    
+
     // ボード・登録モーダルの保存ボタンをクリックしたら保存処理を行う
     $(document).on("click", "#board-add-modal #save-btn", function () {
         var board_title_text = $('#board_new_title_text').val();
@@ -45,8 +47,8 @@ $(function() {
             alert("system Error");
         });
     });
-    
-    
+
+
     // ボード・モーダルの削除ボタンをクリックしたら確認する
     $(document).on("click", "#board-modal #delete-btn", function () {
         if(window.confirm('このボードを削除します。よろしいですか？')){
@@ -60,7 +62,7 @@ $(function() {
                     $('body').css('background-color', detail['board_color'])
                     $("input#board_title_text").val(detail['title']);
                     $("input#board_color").val(detail['board_color']);
-                    
+
                     // ボードに関連するパネルを表示する
                     getPanels(detail['id']);
                 }).fail(function(data) {
@@ -70,7 +72,7 @@ $(function() {
 		        $('#board-modal').modal('hide'); // モーダルを閉じる
 		    }).fail(function() {
                 alert("system Error");
-            });  
+            });
 	    }
     });
 });

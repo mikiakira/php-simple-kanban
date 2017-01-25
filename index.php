@@ -54,19 +54,19 @@ $_SESSION["active"] = '';
             <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;パネルを追加</div>
             <div id="logout" class="btn btn-default"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;ログアウト</a></div>
         </div>
-        
+
     </div>
     <!-- ボードヘッダ -->
     <div id="board_header">
         <!-- ボードタイトル -->
         <div id="board_title" data-id=""><h1 style=""></h1></div>
     </div>
-    
+
     <!-- ボード一覧 -->
     <div id="board_all_list">
 
     </div>
-    
+
     <div class="board">
         <div id="panel_area" class="sortable">
         </div>
@@ -81,7 +81,7 @@ $_SESSION["active"] = '';
                     <h2 data-id="new">title00</h2>
                 </div>
                 <div class="panel-body">
-                    
+
                 </div>
                 <div class="panel-footer">
                     <div class="btn btn-default card_add">カードを追加</div>
@@ -132,7 +132,7 @@ $_SESSION["active"] = '';
             </div>
         </div>
     </div>
-    
+
     <!-- カード・移動/複製モーダル -->
     <div class="modal" id="card-move-modal" data-id="" tabindex="-1">
         <div class="modal-dialog">
@@ -151,7 +151,7 @@ $_SESSION["active"] = '';
                         <label for="board_select" class="col-sm-2 control-label">ボード</label>
                         <select id="board_select"></select>
                     </div>
-                    <div class="form-group">    
+                    <div class="form-group">
                         <label for="panel_select" class="col-sm-2 control-label">パネル</label>
                         <select id="panel_select"></select>
                     </div>
@@ -159,7 +159,7 @@ $_SESSION["active"] = '';
                         <div id="selectGroup">
                             <label for="panel_select" class="col-sm-2 control-label"></label>
                             <input type="radio" name="q" value="move"> 移動
-                            <input type="radio" name="q" value="copy"> 複製                            
+                            <input type="radio" name="q" value="copy"> 複製
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@ $_SESSION["active"] = '';
             </div>
         </div>
     </div>
-    
+
     <!-- ボード・更新用モーダル -->
     <div class="modal" id="board-modal" tabindex="-1">
         <div class="modal-dialog">
@@ -197,7 +197,7 @@ $_SESSION["active"] = '';
                         <div class="col-sm-10">
                             <input type="text" id="board_color">
                         </div>
-                    </div>                        
+                    </div>
                 </div>
                 <!-- モーダルのフッタ -->
                 <div class="modal-footer">
@@ -208,7 +208,7 @@ $_SESSION["active"] = '';
             </div>
         </div>
     </div>
-    
+
     <!-- ボード・登録用モーダル -->
     <div class="modal" id="board-add-modal" tabindex="-1">
         <div class="modal-dialog">
@@ -234,7 +234,7 @@ $_SESSION["active"] = '';
                         <div class="col-sm-10">
                             <input type="text" id="board_new_color">
                         </div>
-                    </div>                        
+                    </div>
                 </div>
                 <!-- モーダルのフッタ -->
                 <div class="modal-footer">
@@ -243,8 +243,8 @@ $_SESSION["active"] = '';
                 </div>
             </div>
         </div>
-    </div>        
-    
+    </div>
+
     <!-- パネル・モーダル -->
     <div class="modal" id="panel-modal" data-id="" tabindex="-1">
         <div class="modal-dialog">
@@ -275,7 +275,7 @@ $_SESSION["active"] = '';
             </div>
         </div>
     </div>
-    
+
     <!-- 編集用モーダルここまで -->
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -284,11 +284,11 @@ $_SESSION["active"] = '';
     <script src="js/linkify.min.js"></script>
     <script src="js/linkify-jquery.min.js"></script>
     <script src="js/jquery.spectrum-ja.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/io_board.js"></script>
-    <script src="js/io_panel.js"></script>
-    <script src="js/io_card.js"></script>
-    <script src="js/common.js"></script>
+    <script src="js/app.min.js"></script>
+    <script src="js/io_board.min.js"></script>
+    <script src="js/io_panel.min.js"></script>
+    <script src="js/io_card.min.js"></script>
+    <script src="js/common.min.js"></script>
 </body>
 
-</html>
+        </html>

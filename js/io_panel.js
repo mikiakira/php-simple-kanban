@@ -9,14 +9,13 @@ $(function() {
         }
         // 空のパネルを追加
         $("#panel_area").append($("#hidden .panel").html());
-        
+
         // パネルの中のカードがドラッグできるように再設定
         $("#panel_area .panel-body").sortable({
             connectWith: '.panel-body'
         });
-
     });
-    
+
     // パネルのタイトルをクリックしたら編集モーダルを開く
     $(document).on("click", ".panel h2", function () {
         var id = $(this).attr("data-id");
@@ -24,7 +23,7 @@ $(function() {
         $('#panel-modal #panel_title_text').val($(this).html());
         $('#panel-modal').modal('show');
     });
-    
+
     // パネル・モーダルの保存ボタンをクリックしたら保存処理を行う
     $(document).on("click", "#panel-modal .modal-dialog .modal-footer button#save-panel-btn", function () {
         var panel_title_text = $('#panel_title_text').val();
@@ -39,13 +38,13 @@ $(function() {
             // タイトルを保存したデータで更新する
             $("#panel_area .panel h2[data-id='"+panel_id+"']").html(detail['title']);
             if(panel_id === 'new'){
-                $("#panel_area .panel h2").attr(detail['id']);                
+                $("#panel_area .panel h2").attr(detail['id']);
             }
             $('#panel-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
             alert("system Error");
         });
-    });    
+    });
 
     // パネル・モーダルの削除ボタンを押下したら確認する
     $(document).on("click", "#panel-modal .modal-dialog .modal-footer button#delete-btn", function () {
@@ -56,9 +55,9 @@ $(function() {
 		        $('#panel-modal').modal('hide'); // モーダルを閉じる
 		    }).fail(function() {
                 alert("system Error");
-            });  
+            });
 	    }
     });
-    
+
 });
 

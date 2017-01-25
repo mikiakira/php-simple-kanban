@@ -3,7 +3,7 @@ $(function() {
     /* *****************
      * 初期設定
      * *****************/
-    
+
     // カラーピッカーの初期設定
     $('#card_label_color,#board_color,#board_new_color').spectrum({
         preferredFormat: "hex",
@@ -11,14 +11,14 @@ $(function() {
         showInitial: true,
         showPaletteOnly: true, // 外観をパレットのみにする
         palette: [ // パレットで使う色を指定
-            ["#ffffff", "#cccccc", "#999999", "#666666", "#333333", "#000000"], 
+            ["#ffffff", "#cccccc", "#999999", "#666666", "#333333", "#000000"],
             ["#f44336", "#ff9800", "#ffeb3b", "#8bc34a", "#4caf50", "#03a9f4", "#2196f3"]
         ]
     });
 
     // パネルを並び替え
     $(".sortable").sortable();
-    
+
     // パネルの並び替えが終わったら、並び順を更新する
     $(document).on('sortstop','.sortable',function(){
         var sortArray = [];
@@ -73,22 +73,24 @@ $(function() {
      * *****************/
     // ボードは削除フラグが0で最小のidを抽出し、タイトルと背景色を取り出す
     exePost("boards", "first", "", "", "").done(function(data) {
-        var detail = $.parseJSON(data);
-        $('#board_title h1').html(detail['title']);
-        $('#board_title').attr('data-id', detail['id']);
-        $('body').css('background-color', detail['board_color'])
-        $("input#board_title_text").val(detail['title']);
-        $("input#board_color").val(detail['board_color']);
-        
-        // ボードに関連するパネルを表示する
-        getPanels(detail['id']);
+        if (data) {
+            var detail = $.parseJSON(data);
+            $('#board_title h1').html(detail['title']);
+            $('#board_title').attr('data-id', detail['id']);
+            $('body').css('background-color', detail['board_color'])
+            $("input#board_title_text").val(detail['title']);
+            $("input#board_color").val(detail['board_color']);
+
+            // ボードに関連するパネルを表示する
+            getPanels(detail['id']);
+        }
     }).fail(function(data) {
         alert("system Error");
     });
 
     // ボード一覧を取得する
     getBoardList();
-    
+
     // ボードリストをクリックしたらボードを切り替える
     $(document).on('click', '#board_all_list li', function() {
         var boards_id = $(this).attr('data-board');
@@ -100,7 +102,7 @@ $(function() {
     $(document).on("click", "#board_list", function() {
         $("#board_all_list").toggle('display');
     });
-    
+
 });
 
 
@@ -130,12 +132,12 @@ function getPanels(id){
         if(data !==false){
             var obj = $.parseJSON(data);
             var panels = "";
-            
+
             $.each(obj, function(index, value) {
                 $("#panel_area").append($("#hidden .panel").html());
                 $("#panel_area .panel:last-child h2").html(value["title"]);
                 $("#panel_area .panel:last-child h2").attr("data-id", value["id"]);
-                
+
                 // カード情報を取得して反映反映
                 exePost("cards", "list", value["id"], "", "").done(function(card_data) {
                     var card_obj = $.parseJSON(card_data);
@@ -148,7 +150,7 @@ function getPanels(id){
                     $("#panel_area .panel h2[data-id='"+value["id"]+"']").parent().parent().children('.panel-body').sortable({
                         connectWith: '.panel-body'
                     });
-                
+
                 });
             });
         }
@@ -167,10 +169,10 @@ function getBoard(id){
         $('body').css('background-color', detail['board_color'])
         $("input#board_title_text").val(detail['title']);
         $("input#board_color").val(detail['board_color']);
-        
+
         // パネルをクリアする
         $("#panel_area").html('');
-        
+
         // ボードIDに紐づくパネルとカードの情報を取得して表示する
         getPanels(detail['id']);
 

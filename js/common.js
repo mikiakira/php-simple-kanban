@@ -15,6 +15,7 @@ function exePost(mode, action, id, title, contents, label, etc1) {
     })
 }
 
+// JS で PHP の nl2br
 function nl2br(str) {
     if(!str){
     }else{
