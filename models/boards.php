@@ -18,21 +18,9 @@ class boards {
         $searchResult = ORM::for_table(self::$table_name)
             ->select('*')
             ->where('del_flg', 0)
-            ->order_by_asc('id')
-            ->limit(1)
-            ->find_one();
-        return $searchResult;
-    }
-
-
-    // 全件
-    public static function findLabel($labelId){
-        $searchResult = ORM::for_table(self::$table_name)
-            ->select('*')
-            ->where('labelid', $labelId)
-            ->where('del_flg', 0)
             ->order_by_asc('title')
-            ->find_many();
+                ->limit(1)
+            ->find_one();
         return $searchResult;
     }
 

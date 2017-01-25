@@ -24,7 +24,7 @@ $_SESSION["active"] = '';
 <html lang="ja">
 <head>
     <meta charset="utf-8" />
-    <title>php clone Trello</title>
+    <title>php-simple-kanban</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=yes">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />

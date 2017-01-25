@@ -12,7 +12,7 @@ class panels {
             ->order_by_asc('order_key')
             ->find_many();
         return $searchResult;
-        
+
     }
 
     // 最初の1件を取得
@@ -74,11 +74,20 @@ class panels {
     }
 
     // 追加
-    public static function create($array){
+    public static function create($array) {
+
+        $lastOneResult = ORM::for_table(self::$table_name)
+                ->select('*')
+                ->where('del_flg', 0)
+                ->order_by_desc('id')
+                ->find_one();
+        $newOrderNum = $lastOneResult['id'] + 1;
+
         $create = ORM::for_table(self::$table_name)->create();
         foreach ($array as $key => $value) {
             $create->{$key} = $value;
         }
+        $create->order_key = $newOrderNum; // 並び順は最後のIDに+1
         $create->save();
         return $create->id();
     }

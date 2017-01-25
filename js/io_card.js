@@ -11,11 +11,21 @@ $(function() {
 
         if ($(this).attr("cardId") === 'new') {
             $("#card_title_text").val('');
-            $("#card_label_color").val('');
             $("#contents").val('');
             $("#contents_view").html('');
+            $("#card_label_color").val("#cccccc");
+            $("#card_label_color").spectrum({
+                showSelectionPalette: true,
+                preferredFormat: "hex",
+                showInput: true,
+                showInitial: true,
+                showPaletteOnly: true, // 外観をパレットのみにする
+                palette: [// パレットで使う色を指定
+                    ["#ffffff", "#cccccc", "#999999", "#666666", "#333333", "#000000"],
+                    ["#f44336", "#ff9800", "#ffeb3b", "#8bc34a", "#4caf50", "#03a9f4", "#2196f3"]
+                ]
+            });
         } else {
-
             // コンテンツの内容を取得して反映する
             exePost("cards", "find", $(this).attr("cardId"), "", "", "", "").done(function (data) {
                 if (data) {
@@ -43,6 +53,9 @@ $(function() {
                 alert("system Error");
             });
 
+            // 初期表示は、編集モードをオフにする
+            $("#contents").css('display', 'none');
+            $("#contents_view").css('display', 'block');
         }
         $('#card-edit').modal('show');
     });
