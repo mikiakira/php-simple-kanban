@@ -4,18 +4,18 @@ php-simple-kanban
 <img src="https://github.com/mikiakira/imageArchive/blob/master/img/php-simple-kanban.png?raw=true" width="50%">
 
 ## Description
-Trello にインスパイアされて、「かんばん」の機能のみを PHP でクローンしたウェブアプリ
+A web app that was inspired by Trello and cloned only the "Kanban" function with PHP.
 
-データは SQlite で管理するため、ダウンロードした後は設定ファイルでパスワードを書き換えるだけですぐに始められます
+Since the data is managed by SQlite, after downloading, it can be started immediately by just rewriting the password with the setting file.
 
 
 ## Quick start
-  * app.template.db をコピーして、app.db にリネームして設置
-  * config/define.php を開いて、パスワードを設定する
+  * Copy app.template.db and rename it to app.db
+  * Open config / define.php and set the password
 
 
 ## BackUp
-(現在は隠しモード) ログインした状態で、export.php にアクセスすると、データベースのバックアップ(app.db)をダウンロードすることができます
+(Current hidden mode) When logged in, you access export.php then download the database backup (app.db)
 
 
 ## Copyright and license
