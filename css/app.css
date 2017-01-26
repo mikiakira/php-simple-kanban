@@ -25,7 +25,7 @@ body {
 }
 .card {
     width: 98%;
-    height: 70px;
+    min-height: 70px;
     margin: auto;
     text-align: left;
     display: block;
