@@ -113,6 +113,12 @@ $(function() {
         $("#board_all_list").toggle('display');
     });
 
+    // ログアウト
+    $(document).on('click', '#logout', function() {
+        window.location.replace("logout.php");
+    });
+
+
 });
 
 

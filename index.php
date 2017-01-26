@@ -53,7 +53,7 @@ $_SESSION["active"] = '';
             <div id="board_list" class="btn btn-default"><span class="glyphicon glyphicon-th-large"></span>&nbsp;ボード</div>
             <div id="board_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;ボードを追加</div>
             <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;パネルを追加</div>
-            <div id="logout" class="btn btn-default"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;ログアウト</a></div>
+            <div id="logout" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span>&nbsp;ログアウト</div>
         </div>
 
     </div>
