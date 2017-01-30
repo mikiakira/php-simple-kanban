@@ -42,10 +42,9 @@ $(function() {
             var detail = $.parseJSON(data);
             // タイトルを保存したデータで更新する
             // new の時は、data-id = new を対象に、それ以外は既存のIDで検索する
-            console.log(detail['title']);
             if(panel_id === 'new'){
-                $("#panel_area .panel h2[data-id='new']").html(detail['title']);
-                $("#panel_area .panel h2[data-id='new']").attr("data-id", detail['id']);
+                $("#panel_area .panel").find("h2[data-id='new']").eq(0).html(detail['title']);
+                $("#panel_area .panel").find("h2[data-id='new']").eq(0).attr("data-id", detail['id']);
             }else{
                 $("#panel_area .panel h2[data-id='"+panel_id+"']").attr("data-id", detail['id']);
                 $("#panel_area .panel h2[data-id='"+panel_id+"']").html(detail['title']);
