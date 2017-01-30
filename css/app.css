@@ -5,9 +5,16 @@ body {
     display: block;
     height: 1200px;
 }
-.board,panel_area {
+
+#app_header {
     width: auto;
     min-width: 90%;
+    height: auto;
+    overflow-x: scroll;
+}
+
+#panel_area {
+    min-width: 2000px;
     height: auto;
     overflow-x: scroll;
 }

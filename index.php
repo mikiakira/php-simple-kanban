@@ -48,7 +48,7 @@ $_SESSION["active"] = '';
         return;
     }
     ?>
-    <div class="board">
+    <div id="app_header" class="board">
         <div class="sortable">
             <div id="board_list" class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">&nbsp;ボード<span class="caret"></span>
