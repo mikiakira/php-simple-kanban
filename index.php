@@ -50,7 +50,13 @@ $_SESSION["active"] = '';
     ?>
     <div class="board">
         <div class="sortable">
-            <div id="board_list" class="btn btn-default"><span class="glyphicon glyphicon-th-large"></span>&nbsp;ボード</div>
+            <div id="board_list" class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">&nbsp;ボード<span class="caret"></span>
+                </button>
+                <!-- ボード一覧 -->
+                <div id="board_all_list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                </div>
+            </div>
             <div id="board_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;ボードを追加</div>
             <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;パネルを追加</div>
             <div id="logout" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span>&nbsp;ログアウト</div>
@@ -61,11 +67,6 @@ $_SESSION["active"] = '';
     <div id="board_header">
         <!-- ボードタイトル -->
         <div id="board_title" data-id=""><h1 style=""></h1></div>
-    </div>
-
-    <!-- ボード一覧 -->
-    <div id="board_all_list">
-
     </div>
 
     <div class="board">

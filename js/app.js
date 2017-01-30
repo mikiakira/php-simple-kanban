@@ -105,12 +105,6 @@ $(function() {
     $(document).on('click', '#board_all_list li', function() {
         var boards_id = $(this).attr('data-board');
         getBoard(boards_id);
-        $("#board_all_list").toggle('display');
-    });
-
-    // BOARD をクリックしたら、ボード一覧を開く
-    $(document).on("click", "#board_list", function() {
-        $("#board_all_list").toggle('display');
     });
 
     // ログアウト
@@ -128,12 +122,11 @@ function getBoardList() {
     $("#board_all_list").html('');
     exePost("boards", "list", "", "", "").done(function(data) {
         var obj = $.parseJSON(data);
-        var lists = "";
+        var lists = '<ul">';
         $.each(obj, function(index, value) {
             lists += "<li class='list-group-item' data-board='" + value["id"] + "' style='background: 10px "+value['board_color']+"'>" + value["title"] + "</li>";
         });
         $("#board_all_list").html(lists);
-        $("#board_all_list").hide();
     }).fail(function(data) {
         alert("system Error");
     });
