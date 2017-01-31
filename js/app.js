@@ -122,10 +122,11 @@ function getBoardList() {
     $("#board_all_list").html('');
     exePost("boards", "list", "", "", "").done(function(data) {
         var obj = $.parseJSON(data);
-        var lists = '<ul">';
+        var lists = '<ul>';
         $.each(obj, function(index, value) {
             lists += "<li class='list-group-item' data-board='" + value["id"] + "' style='background: 10px "+value['board_color']+"'>" + value["title"] + "</li>";
         });
+        lists += '</ul>';
         $("#board_all_list").html(lists);
     }).fail(function(data) {
         alert("system Error");
