@@ -64,13 +64,14 @@ body {
     min-width: 200px;
     float: left;
     position: fixed;
-    top: 6px;
+    top: 26px;
 }
 #board_title h1 {
     font-size:20px;
     font-weight: bold;
     color: #fff;
     padding: 4px;
+    margin: 0;
 }
 
 #board_title h1:hover {
