@@ -7,16 +7,32 @@ body {
 }
 
 #app_header {
-    width: auto;
-    min-width: 90%;
+    width: 100%;
     height: auto;
-    overflow-x: scroll;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#board_header {
+    width: 100%;
+    display: block;
+    margin-top: 30px;
+    position: static;
+}
+
+#dropdownMenu1,#board_add,#panel_add,#logout {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
 }
 
 #panel_area {
     min-width: 2000px;
     height: auto;
     overflow-x: scroll;
+    margin-top: 50px;
 }
 .pannel {
     width: 240px;
@@ -47,6 +63,8 @@ body {
     width: auto;
     min-width: 200px;
     float: left;
+    position: fixed;
+    top: 6px;
 }
 #board_title h1 {
     font-size:20px;
