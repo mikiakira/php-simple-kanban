@@ -12,14 +12,14 @@ it can be started immediately by just rewriting the password with the setting fi
 
 ## Requirement
 
-  * PHP5.6+
+  * PHP 5.6+ (PDO is required)
   * Idirom
   * SQLite
-  * jQuery
-  * jQuery UI
-  * linkify-jquery
+  * Bootstrap 3.x
+  * jQuery 2.x
+  * jQuery UI 1.x
   * jQuery.spectrum
-  * Bootstrap3
+  * linkify-jquery
 
 
 ## Installation
