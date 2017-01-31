@@ -1,6 +1,5 @@
 # HTML を PHP として動かす
 AddType application/x-httpd-php .php .html
-# AddHandler php5.6-script .htm .html (lolipop)
 
 Options -Indexes
 
@@ -11,16 +10,16 @@ Options -Indexes
 
 <IfModule mod_deflate.c>
     SetOutputFilter DEFLATE
-    
+
     # Mozilla4系などの古いブラウザで無効、しかしMSIEは除外
     BrowserMatch ^Mozilla/4\.0[678] no-gzip
     BrowserMatch ^Mozilla/4 gzip-only-text/html
     BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
-    
+
     # gifやjpgなど圧縮済みのコンテンツは再圧縮しない
     SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico)$ no-gzip dont-vary
     SetEnvIfNoCase Request_URI _\.utxt$ no-gzip
-    
+
     # htmlやcssなどは圧縮
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html

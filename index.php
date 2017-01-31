@@ -1,4 +1,8 @@
 <?php
+if (extension_loaded('zlib')) {
+    //　ライブラリが存在していたら圧縮する
+    ob_start('ob_gzhandler');
+}
 require_once("class/apiFunc.php");
 require_once("config/define.php");
 $apiFunc = new apiFunc();
@@ -293,4 +297,9 @@ $_SESSION["active"] = '';
     <script src="js/common.min.js"></script>
 </body>
 
-        </html>
+</html>
+<?php
+if (extension_loaded('zlib')) {
+    ob_end_flush();
+}
+?>
