@@ -163,3 +163,7 @@ input {
     color: #666;
     text-decoration: underline;
 }
+
+.dropdown-menu {
+  z-index: 25000!important;
+}
