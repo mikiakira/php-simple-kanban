@@ -3,7 +3,7 @@
 body {
     background-color: rgb(0, 174, 204);
     display: block;
-    height: 1200px;
+    height: auto;
 }
 
 #app_header {
