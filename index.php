@@ -59,8 +59,8 @@ if ($pass === APP_PASS) {
             echo '<div class="col-xs-12">';
             echo '<form method="post" action="">';
             echo '<label for="pass">Login:</label> ';
-            echo '<input type="text" name="pass"><br>';
-            echo '<input type="checkbox" name="save" value="on">&nbsp;<span class="white">ログイン情報を記録する</span><br>';
+            echo '<input type="password" name="pass"><br>';
+    echo '<input type="checkbox" name="save" value="on">&nbsp;<span class="white">ログイン情報を記録する</span><br>';
             echo '<input type="submit" value="ログイン">';
             echo '</form>';
             echo '</div>';
