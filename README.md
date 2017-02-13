@@ -36,4 +36,4 @@ Code copyright 2017 the Web Atelier Midori Inc. Code released under the MIT Lice
 
 
 ## An explanation of Japanese
-日本語の解説は [Qiita の記事](http://qiita.com/Web_akira/items/f4a56ccf350c5501a535)をご覧下さい。
+日本語の解説は [公式ブログ](https://web-atelier-midori.com/blog/php/1817/)をご覧下さい。
