@@ -150,6 +150,13 @@ input {
 #login_box {
     margin-top: 200px;
 }
+#login_box .white {
+    color: #fff;
+}
+
+#login_box input[type="submit"] {
+    margin-top: 10px;
+}
 
 #login_box label {
     color: #fff;
