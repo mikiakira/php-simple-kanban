@@ -325,7 +325,7 @@ function getPanels(id){
     //////////////////////////////////////////////////
     // カード
     //////////////////////////////////////////////////
-       // カードをクリックしたら編集モーダルを開く
+    // カードをクリックしたら編集モーダルを開く
     $(document).on('click', '.panel-body .card', function() {
         $("#card_title_text").val($(this).html());
         $('#card-edit').attr('data-id', $(this).attr("cardId"));
@@ -335,6 +335,10 @@ function getPanels(id){
         $("#card-move-modal").attr('data-id', $(this).attr("cardId"));
 
         if ($(this).attr("cardId") === 'new') {
+            // 新しいカードは削除と、移動/複製ボタンを出さない
+            $("#move-btn").hide();
+            $("#delete-btn").hide();
+
             $("#card_title_text").val('');
             $("#contents").val('');
             $("#contents_view").html('');
@@ -351,6 +355,8 @@ function getPanels(id){
                 ]
             });
         } else {
+            $("#move-btn").show();
+            $("#delete-btn").show();
             // コンテンツの内容を取得して反映する
             exePost("cards", "find", $(this).attr("cardId"), "", "", "", "").done(function (data) {
                 if (data) {
