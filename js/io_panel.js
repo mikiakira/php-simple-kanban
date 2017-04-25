@@ -1,6 +1,8 @@
 $(function() {
     // パネルを増やす
-    $("#panel_add").on("click", function () {
+    $("#panel_add").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         // パネルを追加したら、その時の個数を取得する
         var count = $(".pannel").length;
         if (count > 7) {
@@ -14,6 +16,7 @@ $(function() {
         $("#panel_area .panel-body").sortable({
             connectWith: '.panel-body'
         });
+        return false;
     });
 
     // パネルのタイトルをクリックしたら編集モーダルを開く

@@ -308,10 +308,6 @@ if ($pass === APP_PASS) {
         <script src="js/linkify-jquery.min.js"></script>
         <script src="js/jquery.spectrum-ja.min.js"></script>
         <script src="js/app.min.js"></script>
-        <script src="js/io_board.min.js"></script>
-        <script src="js/io_panel.min.js"></script>
-        <script src="js/io_card.min.js"></script>
-        <script src="js/common.min.js"></script>
     </body>
 
 </html>
