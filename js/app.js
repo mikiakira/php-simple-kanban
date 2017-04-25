@@ -1,5 +1,7 @@
 jQuery(function ($) {
 
+    var timeOutMsg = "処理に時間がかかっています。しばらくしてからやり直してみて下さい";
+
     /* *****************
      * 初期設定
      * *****************/
@@ -31,7 +33,7 @@ jQuery(function ($) {
         var sortText = JSON.stringify(sortArray);
         exePost("panels", "sort", "", sortText, "").done(function() {
         }).fail(function() {
-            alert("system Error");
+            alert(timeOutMsg);
         });
     });
 
@@ -61,7 +63,7 @@ jQuery(function ($) {
                 var sortText = JSON.stringify(sortArray);
                 exePost("cards", "sort", panel_id, sortText, "").done(function() {
                 }).fail(function() {
-                    alert("system Error");
+                    alert(timeOutMsg);
                 });
             }
         });
@@ -95,7 +97,7 @@ jQuery(function ($) {
             getPanels(detail['id']);
         }
     }).fail(function(data) {
-        alert("system Error");
+        alert(timeOutMsg);
     });
 
     // ボード一覧を取得する
@@ -169,7 +171,7 @@ jQuery(function ($) {
             }
             $('#panel-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
-            alert("system Error");
+            alert(timeOutMsg);
         });
     });
 
@@ -181,7 +183,7 @@ jQuery(function ($) {
 		        $("#panel_area .panel h2[data-id='"+panel_id+"']").parent().parent().remove();
 		        $('#panel-modal').modal('hide'); // モーダルを閉じる
 		    }).fail(function() {
-                alert("system Error");
+                alert(timeOutMsg);
             });
 	    }
     });
@@ -217,7 +219,7 @@ jQuery(function ($) {
             getBoardList(); // ボード一覧を取得しなおす
             $('#board-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
-            alert("system Error");
+            alert(timeOutMsg);
         });
     });
 
@@ -235,7 +237,7 @@ jQuery(function ($) {
             getBoardList(); // ボード一覧を取得しなおす
             $('#board-add-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
-            alert("system Error");
+            alert(timeOutMsg);
         });
     });
 
@@ -257,12 +259,12 @@ jQuery(function ($) {
                     // ボードに関連するパネルを表示する
                     getPanels(detail['id']);
                 }).fail(function (data) {
-                    alert("system Error");
+                    alert(timeOutMsg);
                 });
                 getBoardList(); // ボード一覧を取得しなおす
                 $('#board-modal').modal('hide'); // モーダルを閉じる
             }).fail(function () {
-                alert("system Error");
+                alert(timeOutMsg);
             });
         }
     });
@@ -282,7 +284,7 @@ function getBoardList() {
         lists += '</ul>';
         $("#board_all_list").html(lists);
     }).fail(function(data) {
-        alert("system Error");
+        alert(timeOutMsg);
     });
 }
 
@@ -318,7 +320,7 @@ function getPanels(id){
             });
         }
     }).fail(function(data) {
-        alert("system Error");
+        alert(timeOutMsg);
     });
 
 
@@ -381,7 +383,7 @@ function getPanels(id){
 
                 }
             }).fail(function (data) {
-                alert("system Error");
+                alert(timeOutMsg);
             });
 
             // 初期表示は、編集モードをオフにする
@@ -447,7 +449,7 @@ function getPanels(id){
             $("#contents").val('');
             $('#card-edit').modal('hide');
         }).fail(function(data) {
-            alert("system Error");
+            alert(timeOutMsg);
         });
     });
 
@@ -460,7 +462,7 @@ function getPanels(id){
                 $("#panel_area .panel h2[data-id='" + panel_id + "']").parent().parent().find(".panel-body .card[cardId='" + card_id + "']").remove();
                 $('#card-edit').modal('hide');
             }).fail(function () {
-                alert("system Error");
+                alert(timeOutMsg);
             });
         }
     });
@@ -480,7 +482,7 @@ function getPanels(id){
             });
             $("#board_select").append(lists);
         }).fail(function(data) {
-            alert("system Error");
+            alert(timeOutMsg);
         });
         // ボードリストが選択されたら、パネルリストを更新する
         $(document).on("change", "#board_select", function () {
@@ -495,7 +497,7 @@ function getPanels(id){
                 $("#panel_select").html('');
                 $("#panel_select").append(lists);
             }).fail(function(data) {
-                alert("system Error");
+                alert(timeOutMsg);
             });
         });
 
@@ -532,11 +534,11 @@ function getPanels(id){
                         $('#card-move-modal').modal('hide');
                     }
                 }).fail(function (data) {
-                    alert("system Error");
+                    alert(timeOutMsg);
                 });
 
             }).fail(function () {
-                alert("system Error");
+                alert(timeOutMsg);
             });
         });
     });
@@ -570,7 +572,7 @@ function getBoard(id){
         getPanels(detail['id']);
 
     }).fail(function(data) {
-        alert("system Error");
+        alert("処理に時間がかかっています。しばらくしてからやり直してみて下さい");
     });
 }
 
@@ -579,6 +581,7 @@ function exePost(mode, action, id, title, contents, label, etc1) {
         type: "POST",
         url: "pdo.php",
         dataType: 'text',
+        timeout:10000,
         data: {
             mode: mode,
             action: action,
