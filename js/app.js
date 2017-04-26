@@ -140,9 +140,13 @@ jQuery(function ($) {
     $(document).on("click", ".panel h2", function () {
         var id = $(this).attr("data-id");
         $("#panel-modal").attr("data-id", id);
+        // 新規の時
         if(id ==='new'){
+            // 削除ボタンは非表示にする
+            $('#panel-modal button#delete-btn').hide();
             $('#panel-modal #panel_title_text').val('');
         }else{
+            $('#panel-modal button#delete-btn').show();
             $('#panel-modal #panel_title_text').val($(this).html());
         }
 
