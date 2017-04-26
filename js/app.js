@@ -177,15 +177,15 @@ jQuery(function ($) {
 
     // パネル・モーダルの削除ボタンを押下したら確認する
     $(document).on("click", "#panel-modal .modal-dialog .modal-footer button#delete-btn", function () {
-         if(window.confirm('このパネルを削除します。よろしいですか？')){
-		    var panel_id = $('#panel-modal').attr('data-id');
-		    exePost("panels", "del", panel_id, "", "", "", "").done(function() {
-		        $("#panel_area .panel h2[data-id='"+panel_id+"']").parent().parent().remove();
-		        $('#panel-modal').modal('hide'); // モーダルを閉じる
-		    }).fail(function() {
+         if (window.confirm('このパネルを削除します。よろしいですか？')) {
+            var panel_id = $('#panel-modal').attr('data-id');
+            exePost("panels", "del", panel_id, "", "", "", "").done(function () {
+                $("#panel_area .panel h2[data-id='" + panel_id + "']").parent().parent().remove();
+                $('#panel-modal').modal('hide'); // モーダルを閉じる
+            }).fail(function () {
                 alert(timeOutMsg);
             });
-	    }
+        }
     });
 
 
@@ -268,61 +268,6 @@ jQuery(function ($) {
             });
         }
     });
-});
-
-
-
-// ボード一覧を取得する
-function getBoardList() {
-    $("#board_all_list").html('');
-    exePost("boards", "list", "", "", "").done(function(data) {
-        var obj = $.parseJSON(data);
-        var lists = '<ul>';
-        $.each(obj, function(index, value) {
-            lists += "<li class='list-group-item' data-board='" + value["id"] + "' style='background: 10px "+value['board_color']+"'>" + value["title"] + "</li>";
-        });
-        lists += '</ul>';
-        $("#board_all_list").html(lists);
-    }).fail(function(data) {
-        alert(timeOutMsg);
-    });
-}
-
-
-// パネル一覧を取得して画面に反映する
-function getPanels(id){
-
-    // ボードIDから関連するパネルのタイトルとIDを取得して反映
-    exePost("panels", "list", id, "", "").done(function(data) {
-        if(data !==false){
-            var obj = $.parseJSON(data);
-            var panels = "";
-
-            $.each(obj, function(index, value) {
-                $("#panel_area").append($("#hidden .panel").html());
-                $("#panel_area .panel:last-child h2").html(value["title"]);
-                $("#panel_area .panel:last-child h2").attr("data-id", value["id"]);
-
-                // カード情報を取得して反映反映
-                exePost("cards", "list", value["id"], "", "").done(function(card_data) {
-                    var card_obj = $.parseJSON(card_data);
-                    var cards = "";
-                    $.each(card_obj, function(index, val) {
-                        cards += "<div class='card panel panel-default' style='border-top: 12px solid "+val["label_color"] + "' label_color='"+val["label_color"] + "' cardId='" + val["id"] + "'>" + val["title"] + "</div>";
-                    });
-                    $("#panel_area .panel h2[data-id='"+value["id"]+"']").parent().parent().children('.panel-body').append(cards);
-                    // パネルの中のカードがドラッグできるように再設定
-                    $("#panel_area .panel h2[data-id='"+value["id"]+"']").parent().parent().children('.panel-body').sortable({
-                        connectWith: '.panel-body'
-                    });
-
-                });
-            });
-        }
-    }).fail(function(data) {
-        alert(timeOutMsg);
-    });
-
 
     //////////////////////////////////////////////////
     // カード
@@ -467,12 +412,14 @@ function getPanels(id){
         }
     });
 
-
+    //////////////////////////////////////////////////
+    // カードの移動
+    //////////////////////////////////////////////////
     // カード･モーダルの移動/複製ボタン押下で専用モーダルを開く
     $(document).on("click", "#card-edit .modal-dialog .modal-footer button#move-btn", function () {
+        // モーダルを開く
         $('#card-move-modal').modal('show');
         // ボードリストを取得し、モーダルに反映する
-        $("#board_select").html('');
         $("#panel_select").html('');
         exePost("boards", "list", "", "", "").done(function(data) {
             var obj = $.parseJSON(data);
@@ -480,55 +427,54 @@ function getPanels(id){
             $.each(obj, function(index, value) {
                 lists += "<option value='" + value["id"]+"'>" + value["title"] + "</option>";
             });
+            $("#board_select").html('');
             $("#board_select").append(lists);
-        }).fail(function(data) {
+            // イベントの多重登録を防止
+            $("#card-move-modal .modal-dialog .modal-footer button#save-panel-btn").off("click");
+            $("#card-move-modal .modal-dialog .modal-footer button#save-panel-btn").on("click", saveMovingCard);
+        }).fail(function() {
             alert(timeOutMsg);
         });
-        // ボードリストが選択されたら、パネルリストを更新する
-        $(document).on("change", "#board_select", function () {
-            exePost("panels", "list", $(this).val(), "", "").done(function(data) {
-                if(data !==false){
-                    var obj = $.parseJSON(data);
-                    var lists = "";
-                    $.each(obj, function(index, value) {
-                        lists += "<option value='" + value["id"]+"'>" + value["title"] + "</option>";
-                    });
-                }
-                $("#panel_select").html('');
-                $("#panel_select").append(lists);
-            }).fail(function(data) {
-                alert(timeOutMsg);
-            });
-        });
+    });
 
-        // 実行ボタンが押下されたら、フォームの値を取得して処理する
-        $(document).on("click", "#card-move-modal .modal-dialog .modal-footer button#save-panel-btn", function () {
-            var boards_id = $("#board_select").val();
-            var panels_id = $("#panel_select").val();
-            var id = $("#card-move-modal").attr('data-id');
-            var mode = $("input[name='q']:radio:checked").val();
-            exePost("cards", mode, id, panels_id, "", "", "").done(function () {
-                $("#panel_area").html('');
-                // ボードは削除フラグが0で最小のidを抽出し、タイトルと背景色を取り出す
-                exePost("boards", "first", "", "", "").done(function (data) {
-                    if (data) {
-                        // パネルをクリアする
-                        $("#panel_area").html('');
-                        getBoard(boards_id);
-                        // 開いているモーダルを閉じる
-                        $('#card-move-modal').modal('hide');
-                        $('#card-edit').modal('hide');
-                    }
-                }).fail(function (data) {
-                    alert(timeOutMsg);
+    // ボードリストが選択されたら、パネルリストを更新する
+    $(document).on("change", "#board_select", function () {
+        exePost("panels", "list", $(this).val(), "", "").done(function (data) {
+            if (data !== false) {
+                var obj = $.parseJSON(data);
+                var lists = "";
+                $.each(obj, function (index, value) {
+                    lists += "<option value='" + value["id"] + "'>" + value["title"] + "</option>";
                 });
-
-            }).fail(function () {
-                alert(timeOutMsg);
-            });
+            }
+            $("#panel_select").html('');
+            $("#panel_select").append(lists);
+        }).fail(function (data) {
+            alert(timeOutMsg);
         });
     });
+    //  カードの移動ここまで */
+
+
+
+}); // jQuery(function($) End
+
+function saveMovingCard() {
+    var boards_id = $("#board_select").val();
+    var panels_id = $("#panel_select").val();
+    var id = $("#card-move-modal").attr('data-id');
+    var mode = $("input[name='q']:radio:checked").val();
+    exePost("cards", mode, id, panels_id, "", "", "").done(function () {
+        // 開いているモーダルを閉じる
+        $('#card-move-modal').modal('hide');
+        $('#card-edit').modal('hide');
+        $("#board_all_list li[data-board=" + boards_id + "]").trigger("click");
+    }).fail(function () {
+        alert(timeOutMsg);
+    });
 }
+
+
 
 // ボード情報を取得して画面に反映する
 function getBoard(id){
@@ -588,4 +534,56 @@ function nl2br(str) {
         str = str.replace(/(\n|\r)/g, "<br />");
     }
     return str;
+}
+
+// ボード一覧を取得する
+function getBoardList() {
+    $("#board_all_list").html('');
+    exePost("boards", "list", "", "", "").done(function(data) {
+        var obj = $.parseJSON(data);
+        var lists = '<ul>';
+        $.each(obj, function(index, value) {
+            lists += "<li class='list-group-item' data-board='" + value["id"] + "' style='background: 10px "+value['board_color']+"'>" + value["title"] + "</li>";
+        });
+        lists += '</ul>';
+        $("#board_all_list").html(lists);
+    }).fail(function(data) {
+        alert(timeOutMsg);
+    });
+}
+
+
+// パネル一覧を取得して画面に反映する
+function getPanels(id) {
+
+    // ボードIDから関連するパネルのタイトルとIDを取得して反映
+    exePost("panels", "list", id, "", "").done(function (data) {
+        if (data !== false) {
+            var obj = $.parseJSON(data);
+            var panels = "";
+
+            $.each(obj, function (index, value) {
+                $("#panel_area").append($("#hidden .panel").html());
+                $("#panel_area .panel:last-child h2").html(value["title"]);
+                $("#panel_area .panel:last-child h2").attr("data-id", value["id"]);
+
+                // カード情報を取得して反映反映
+                exePost("cards", "list", value["id"], "", "").done(function (card_data) {
+                    var card_obj = $.parseJSON(card_data);
+                    var cards = "";
+                    $.each(card_obj, function (index, val) {
+                        cards += "<div class='card panel panel-default' style='border-top: 12px solid " + val["label_color"] + "' label_color='" + val["label_color"] + "' cardId='" + val["id"] + "'>" + val["title"] + "</div>";
+                    });
+                    $("#panel_area .panel h2[data-id='" + value["id"] + "']").parent().parent().children('.panel-body').append(cards);
+                    // パネルの中のカードがドラッグできるように再設定
+                    $("#panel_area .panel h2[data-id='" + value["id"] + "']").parent().parent().children('.panel-body').sortable({
+                        connectWith: '.panel-body'
+                    });
+
+                });
+            });
+        }
+    }).fail(function (data) {
+        alert(timeOutMsg);
+    });
 }
