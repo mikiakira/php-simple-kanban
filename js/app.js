@@ -293,7 +293,13 @@ jQuery(function ($) {
     //////////////////////////////////////////////////
     // カードをクリックしたら編集モーダルを開く
     $(document).on('click', '.panel-body .card', function() {
-        $("#card_title_text").val($(this).html());
+
+        // 画像が表示されている時は文字データのみを取り出す
+        var cardTitle = $(this).html();
+        if (cardTitle.substr(0, 4) == '<img') {
+            cardTitle = $("img", this).attr("src");
+        }
+        $("#card_title_text").val(cardTitle);
         $('#card-edit').attr('data-id', $(this).attr("cardId"));
         $('#card-edit').attr('card_panel_id', $(this).parent().parent().find('.panel-heading h2').attr("data-id"));
         $("#card_label_color").val($(this).attr("label_color"));
@@ -630,7 +636,7 @@ function getPanels(id) {
                 $("#panel_area .panel:last-child h2").html(value["title"]);
                 $("#panel_area .panel:last-child h2").attr("data-id", value["id"]);
 
-                // カード情報を取得して反映反映
+                // カード情報を取得して反映
                 exePost("cards", "list", value["id"], "", "").done(function (card_data) {
                     var card_obj = $.parseJSON(card_data);
                     var cards = "";
@@ -643,6 +649,15 @@ function getPanels(id) {
                         connectWith: '.panel-body'
                     });
 
+                    // カードのタイトルに画像の拡張子があれば、画像タグに整形してしまう
+                    $('.card.panel.panel-default').each(function () {
+                        var titleString = $(this).text();
+                        var fileType = titleString.split(".").pop();
+                        var arr = ["jpg", "jpeg", "gif", "png"];
+                        if (arr.indexOf(fileType) >= 0) {
+                            $(this).wrapInner("<img src='" + titleString + "' style='width: 170px;'>");
+                        }
+                    });
                 });
             });
         }
