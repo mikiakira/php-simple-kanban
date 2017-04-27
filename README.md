@@ -20,6 +20,7 @@ it can be started immediately by just rewriting the password with the setting fi
   * jQuery UI 1.x
   * jQuery.spectrum
   * linkify-jquery
+  * Remodal.js
 
 
 ## Installation
