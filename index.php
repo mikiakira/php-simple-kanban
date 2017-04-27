@@ -47,7 +47,9 @@ if ($pass === APP_PASS) {
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1,user-scalable=yes">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" href="css/spectrum.min.css">
+        <link rel="stylesheet" href="css/spectrum.min.css">
+        <link rel="stylesheet" href="css/remodal.css">
+        <link rel="stylesheet" href="css/remodal-default-theme.css">
         <link rel="stylesheet" href="css/app.min.css" />
         <link rel="icon" type="image/x-icon" href="favicon.png">
     </head>
@@ -80,6 +82,12 @@ if ($pass === APP_PASS) {
                 </div>
                 <div id="board_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;ボード追加</div>
                 <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;パネル追加</div>
+                <div id="card_search" class="btn btn-default">
+                    <div class="input-group">
+                        <input class="form-control searchbox" placeholder="Search for...">
+                        <span class="input-group-btn"><button class="btn btn-default" id="searchExe" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></span>
+                    </div>
+                </div>
                 <div id="logout" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span>&nbsp;ログアウト</div>
             </div>
 
@@ -299,6 +307,22 @@ if ($pass === APP_PASS) {
             </div>
         </div>
 
+        <!-- タイムアウト通知用モーダル(Remodal) -->
+        <div class="remodal" data-remodal-id="modal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>タイムアウト</h1>
+            <p class="msg">処理に時間がかかっています。<br>しばらく経ってからやり直して下さい。</p>
+            <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+        </div>
+
+        <!-- 検索結果モーダル(Remodal) -->
+        <div class="remodal" data-remodal-id="serach_result_modal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>検索結果</h1>
+            <p>最大100件まで表示します</p>
+            <div id="searchResult"></div>
+        </div>
+
         <!-- 編集用モーダルここまで -->
         <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -307,6 +331,7 @@ if ($pass === APP_PASS) {
         <script src="js/linkify.min.js"></script>
         <script src="js/linkify-jquery.min.js"></script>
         <script src="js/jquery.spectrum-ja.min.js"></script>
+        <script src="js/remodal.min.js"></script>
         <script src="js/app.min.js"></script>
     </body>
 

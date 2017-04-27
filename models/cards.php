@@ -14,6 +14,23 @@ class cards {
         return $searchResult;
 
     }
+    // 検索
+    public static function search($keyword){
+        $searchResult = ORM::for_table(self::$table_name)
+            ->table_alias('c')
+            ->select('c.id')
+            ->select('c.title')
+            ->select('c.panels_id')
+            ->select('p.boards_id')
+            ->join('panels', 'c.panels_id = p.id', 'p')
+            ->where_raw('(c.title LIKE ? OR contents LIKE ?)', array('%'.$keyword.'%', '%'.$keyword.'%'))
+            ->where('c.del_flg', 0)
+            ->order_by_asc('c.order_key')
+            ->limit(100)
+            ->find_many();
+        return $searchResult;
+
+    }
 
     // ラベル絞込み全件
     public static function findLabel($labelId){

@@ -166,6 +166,19 @@ if ($apiFunc->is_ajax() ){
             echo json_encode($articleList);
         }
 
+        if($action === "search"){
+            $result = cards::search($id);
+            if($result){
+                foreach( (array)$result as $values){
+                    $articleList[] = ["id" => $values->id, "title"=>$values->title, "panels_id" => $values->panels_id, "boards_id" => $values->boards_id];
+                }
+            }else{
+                $articleList = false;
+            }
+
+            echo json_encode($articleList);
+        }
+
         // 指定したIDの情報を取得
         if($action === "find"){
             $val = cards::find($id);

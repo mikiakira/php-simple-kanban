@@ -1,7 +1,5 @@
 jQuery(function ($) {
 
-    var timeOutMsg = "処理に時間がかかっています。しばらくしてからやり直してみて下さい";
-
     /* *****************
      * 初期設定
      * *****************/
@@ -18,6 +16,23 @@ jQuery(function ($) {
         ]
     });
 
+    // モーダル(Remodal）の初期化
+    // JS で開く処理の場合・インスタンスを作って開いたり閉じたりする
+    var timeoutRemodal = $('[data-remodal-id=modal]').remodal();
+    var searchResultRemodal = $("[data-remodal-id=serach_result_modal]").remodal();
+
+    /**
+     * タイムアウトのモーダルを出力して閉じる
+     * @returns {undefined}
+     */
+    function msgTimeout() {
+        timeoutRemodal.open();
+        // 開いた後、3秒後に閉じる
+        setTimeout(function () {
+            timeoutRemodal.close();
+        }, 3000);
+    }
+
     // パネルを並び替え
     $(".sortable").sortable();
 
@@ -33,7 +48,7 @@ jQuery(function ($) {
         var sortText = JSON.stringify(sortArray);
         exePost("panels", "sort", "", sortText, "").done(function() {
         }).fail(function() {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
 
@@ -63,7 +78,7 @@ jQuery(function ($) {
                 var sortText = JSON.stringify(sortArray);
                 exePost("cards", "sort", panel_id, sortText, "").done(function() {
                 }).fail(function() {
-                    alert(timeOutMsg);
+                    msgTimeout();
                 });
             }
         });
@@ -97,7 +112,7 @@ jQuery(function ($) {
             getPanels(detail['id']);
         }
     }).fail(function(data) {
-        alert(timeOutMsg);
+        msgTimeout();
     });
 
     // ボード一覧を取得する
@@ -175,7 +190,7 @@ jQuery(function ($) {
             }
             $('#panel-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
 
@@ -187,7 +202,7 @@ jQuery(function ($) {
                 $("#panel_area .panel h2[data-id='" + panel_id + "']").parent().parent().remove();
                 $('#panel-modal').modal('hide'); // モーダルを閉じる
             }).fail(function () {
-                alert(timeOutMsg);
+                msgTimeout();
             });
         }
     });
@@ -223,7 +238,7 @@ jQuery(function ($) {
             getBoardList(); // ボード一覧を取得しなおす
             $('#board-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
 
@@ -241,7 +256,7 @@ jQuery(function ($) {
             getBoardList(); // ボード一覧を取得しなおす
             $('#board-add-modal').modal('hide'); // モーダルを閉じる
         }).fail(function(data) {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
 
@@ -263,12 +278,12 @@ jQuery(function ($) {
                     // ボードに関連するパネルを表示する
                     getPanels(detail['id']);
                 }).fail(function (data) {
-                    alert(timeOutMsg);
+                    msgTimeout();
                 });
                 getBoardList(); // ボード一覧を取得しなおす
                 $('#board-modal').modal('hide'); // モーダルを閉じる
             }).fail(function () {
-                alert(timeOutMsg);
+                msgTimeout();
             });
         }
     });
@@ -332,7 +347,7 @@ jQuery(function ($) {
 
                 }
             }).fail(function (data) {
-                alert(timeOutMsg);
+                msgTimeout();
             });
 
             // 初期表示は、編集モードをオフにする
@@ -398,7 +413,7 @@ jQuery(function ($) {
             $("#contents").val('');
             $('#card-edit').modal('hide');
         }).fail(function(data) {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
 
@@ -411,7 +426,7 @@ jQuery(function ($) {
                 $("#panel_area .panel h2[data-id='" + panel_id + "']").parent().parent().find(".panel-body .card[cardId='" + card_id + "']").remove();
                 $('#card-edit').modal('hide');
             }).fail(function () {
-                alert(timeOutMsg);
+                msgTimeout();
             });
         }
     });
@@ -437,7 +452,7 @@ jQuery(function ($) {
             $("#card-move-modal .modal-dialog .modal-footer button#save-panel-btn").off("click");
             $("#card-move-modal .modal-dialog .modal-footer button#save-panel-btn").on("click", saveMovingCard);
         }).fail(function() {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
 
@@ -454,12 +469,56 @@ jQuery(function ($) {
             $("#panel_select").html('');
             $("#panel_select").append(lists);
         }).fail(function (data) {
-            alert(timeOutMsg);
+            msgTimeout();
         });
     });
     //  カードの移動ここまで */
 
+    //////////////////////////////////////////////////
+    // カードの検索
+    //////////////////////////////////////////////////
+    // 検索ボタン押下で検索を実行し、結果をリモーダルで表示する
+    $(document).on("click", "#searchExe", function () {
+        var search_word = trim($('.searchbox').val());
+        // キーワードが空なら送信しない
+        if (search_word != '') {
+            exePost("cards", "search", search_word).done(function (data) {
+                if (data != 'false') {
+                    var obj = $.parseJSON(data);
+                    var lists = "";
+                    $.each(obj, function (index, value) {
+                        lists += "<p><a card_id='" + value["id"] + "' panels_id='" + value["panels_id"] + "' boards_id='" + value["boards_id"] + "'>" + value["title"] + "</a></p>";
+                    });
+                    $("[data-remodal-id='serach_result_modal'] #searchResult").html(lists);
+                    searchResultRemodal.open();
+                } else {
+                    $("[data-remodal-id='serach_result_modal'] #searchResult").html("<p>見つかりませんでした</p>");
+                    searchResultRemodal.open();
+                }
+            }).fail(function (data) {
+                msgTimeout();
+            });
+        } else {
+            $(".searchbox").attr("placeholder", "入力して下さい...");
+            setTimeout(function(){
+                $(".searchbox").attr("placeholder", "Search for...");
+            },2000);
+        }
 
+    });
+    // カードの検索ここまで */
+
+    // 検索結果をクリックしたら該当のボードに移動してカードを表示する
+    $(document).on("click", "#searchResult a", function () {
+        var card_id = $(this).attr("card_id");
+        var panels_id = $(this).attr("panels_id");
+        var boards_id = $(this).attr("boards_id");
+        getBoard(boards_id);
+        searchResultRemodal.close();
+        setTimeout(function(){
+            $("#panel_area .card[cardid="+card_id+"]").trigger("click");
+        },3000);
+    });
 
 }); // jQuery(function($) End
 
@@ -474,7 +533,7 @@ function saveMovingCard() {
         $('#card-edit').modal('hide');
         $("#board_all_list li[data-board=" + boards_id + "]").trigger("click");
     }).fail(function () {
-        alert(timeOutMsg);
+        msgTimeout();
     });
 }
 
@@ -552,7 +611,7 @@ function getBoardList() {
         lists += '</ul>';
         $("#board_all_list").html(lists);
     }).fail(function(data) {
-        alert(timeOutMsg);
+        msgTimeout();
     });
 }
 
@@ -588,6 +647,14 @@ function getPanels(id) {
             });
         }
     }).fail(function (data) {
-        alert(timeOutMsg);
+        msgTimeout();
     });
+}
+
+/*
+ * 前後の空白を取除く（半角・全角スペース両方）
+*/
+function trim(str){
+    var result = str.replace(/(^\s+)|(\s+$)/g, "");
+    return result.replace(/(^\s )+|(\s+$)/g, "");
 }
