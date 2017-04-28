@@ -26,6 +26,7 @@ it can be started immediately by just rewriting the password with the setting fi
 ## Installation
   * Copy app.template.db and rename it to app.db
   * Open config / define.php and set the password
+  * Open config / define.php and please choose a language. Change the value of "const LANG". The default is en in English. Japanese is ja.
 
 
 ## BackUp
@@ -37,4 +38,5 @@ Code copyright 2017 the Web Atelier Midori Inc. Code released under the MIT Lice
 
 
 ## An explanation of Japanese
-日本語の解説は [公式ブログ](https://web-atelier-midori.com/blog/php/1817/)をご覧下さい。
+For commentary on Japanese please see [official blog] (https://web-atelier-midori.com/blog/php/1817/)
+(日本語の解説は [公式ブログ](https://web-atelier-midori.com/blog/php/1817/)をご覧下さい).
