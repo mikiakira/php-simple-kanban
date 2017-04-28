@@ -135,12 +135,6 @@ jQuery(function ($) {
     //////////////////////////////////////////////////
     // パネルを増やす
     $("#panel_add").on("click", function (e) {
-        // パネルを追加したら、その時の個数を取得する
-        var count = $(".pannel").length;
-        if (count > 7) {
-            alert('パネルを増やせるのは7個までです');
-            return;
-        }
         // 空のパネルを追加
         $("#panel_area").append($("#hidden .panel").html());
 
@@ -196,7 +190,7 @@ jQuery(function ($) {
 
     // パネル・モーダルの削除ボタンを押下したら確認する
     $(document).on("click", "#panel-modal .modal-dialog .modal-footer button#delete-btn", function () {
-         if (window.confirm('このパネルを削除します。よろしいですか？')) {
+         if (window.confirm(DELETE_PANEL_MSG)) {
             var panel_id = $('#panel-modal').attr('data-id');
             exePost("panels", "del", panel_id, "", "", "", "").done(function () {
                 $("#panel_area .panel h2[data-id='" + panel_id + "']").parent().parent().remove();
@@ -263,7 +257,7 @@ jQuery(function ($) {
 
     // ボード・モーダルの削除ボタンをクリックしたら確認する
     $(document).on("click", "#board-modal #delete-btn", function () {
-        if (window.confirm('このボードを削除します。よろしいですか？')) {
+        if (window.confirm(DELETE_BOARD_MSG)) {
             var id = $('#board_title').attr("data-id");
             exePost("boards", "del", id, "", "", "", "").done(function () {
                 // ボードを削除したので、初期表示をやり直す
@@ -367,10 +361,10 @@ jQuery(function ($) {
     $(document).on('click', '#contents_toggle', function () {
         $("#contents_view").toggle();
         $("#contents").toggle();
-        if($("#contents_toggle").html() === "編集"){
-            $("#contents_toggle").html("表示");
+        if($("#contents_toggle").html() === CARD_EDIT){
+            $("#contents_toggle").html(CARD_VIEW);
         }else{
-            $("#contents_toggle").html("編集");
+            $("#contents_toggle").html(CARD_EDIT);
         }
     });
 
@@ -425,7 +419,7 @@ jQuery(function ($) {
 
     // カード･モーダルの削除ボタン押下で削除確認を表示
     $(document).on("click", "#card-edit .modal-dialog .modal-footer button#delete-btn", function () {
-        if (window.confirm('このカードを削除します。よろしいですか？')) {
+        if (window.confirm(DELETE_CARD_MSG)) {
             var card_id = $('#card-edit').attr('data-id');
             var panel_id = $('#card-edit').attr('card_panel_id');
             exePost("cards", "del", card_id, "", "", "", "").done(function () {
@@ -505,7 +499,7 @@ jQuery(function ($) {
                 msgTimeout();
             });
         } else {
-            $(".searchbox").attr("placeholder", "入力して下さい...");
+            $(".searchbox").attr("placeholder", ENTER_KEYWORD);
             setTimeout(function(){
                 $(".searchbox").attr("placeholder", "Search for...");
             },2000);
@@ -573,7 +567,7 @@ function getBoard(id){
         getPanels(detail['id']);
 
     }).fail(function(data) {
-        alert("処理に時間がかかっています。しばらくしてからやり直してみて下さい");
+        msgTimeout();
     });
 }
 

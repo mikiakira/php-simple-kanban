@@ -14,6 +14,7 @@ if (extension_loaded('zlib')) {
 }
 require_once("class/apiFunc.php");
 require_once("config/define.php");
+require_once("config/lang.php");
 $apiFunc = new apiFunc();
 $_SESSION["active"] = '';
 
@@ -71,8 +72,8 @@ if ($pass === APP_PASS) {
             echo '<form method="post" action="">';
             echo '<label for="pass">Login:</label> ';
             echo '<input type="password" name="pass"><br>';
-    echo '<input type="checkbox" name="save" value="on">&nbsp;<span class="white">ログイン情報を記録する</span><br>';
-            echo '<input type="submit" value="ログイン">';
+    echo '<input type="checkbox" name="save" value="on">&nbsp;<span class="white">'.LOGIN_COOKIE_MSG.'</span><br>';
+            echo '<input type="submit" value="'.LOGIN_BUTTON.'">';
             echo '</form>';
             echo '</div>';
             echo '</div>';
@@ -83,21 +84,21 @@ if ($pass === APP_PASS) {
         <div id="app_header" class="board">
             <div class="sortable">
                 <div id="board_list" class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">&nbsp;ボード<span class="caret"></span>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">&nbsp;<?= BOARD ?><span class="caret"></span>
                     </button>
                     <!-- ボード一覧 -->
                     <div id="board_all_list" class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     </div>
                 </div>
-                <div id="board_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;ボード追加</div>
-                <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;パネル追加</div>
+                <div id="board_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<?= ADD_BOARD ?></div>
+                <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<?= ADD_PANEL ?></div>
                 <div id="card_search" class="btn btn-default">
                     <div class="input-group">
                         <input class="form-control searchbox" placeholder="Search for...">
                         <span class="input-group-btn"><button class="btn btn-default" id="searchExe" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></span>
                     </div>
                 </div>
-                <div id="logout" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span>&nbsp;ログアウト</div>
+                <div id="logout" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span>&nbsp;<?= LOGOUT ?></div>
             </div>
 
         </div>
@@ -124,7 +125,7 @@ if ($pass === APP_PASS) {
 
                     </div>
                     <div class="panel-footer">
-                        <div class="btn btn-default card_add">カードを追加</div>
+                        <div class="btn btn-default card_add"><?= ADD_CARD ?></div>
                     </div>
                 </div>
             </div>
@@ -142,20 +143,20 @@ if ($pass === APP_PASS) {
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="modal-label">カード情報編集</h4>
+                        <h4 class="modal-title" id="modal-label"><?= EDIT_CARD ?></h4>
                     </div>
                     <!-- モーダルのボディ -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="fieldName" class="col-sm-2 control-label">タイトル</label>
+                            <label for="fieldName" class="col-sm-2 control-label"><?= CARD_TITLE ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="card_title_text">
                             </div>
-                            <label for="fieldTel" class="col-sm-2 control-label">ラベル</label>
+                            <label for="fieldTel" class="col-sm-2 control-label"><?= COLOR_LABEL ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="card_label_color">
                             </div>
-                            <label for="fieldTel" class="col-sm-2 control-label">本文<br><span id="contents_toggle">編集</span></label>
+                            <label for="fieldTel" class="col-sm-2 control-label"><?= CARD_CONTENTS ?><br><span id="contents_toggle"><?= CARD_EDIT ?></span></label>
                             <div class="col-sm-10">
                                 <div id="contents_view" style=""></div>
                                 <textarea id="contents" style="display: none;" cols="50" rows="10"></textarea>
@@ -164,10 +165,10 @@ if ($pass === APP_PASS) {
                     </div>
                     <!-- モーダルのフッタ -->
                     <div class="modal-footer">
-                        <button type="button" id="delete-btn" class="btn btn-danger">削除</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                        <button type="button" id="move-btn" class="btn btn-info">移動/複製</button>
-                        <button type="button" id="save-btn" class="btn btn-primary">保存</button>
+                        <button type="button" id="delete-btn" class="btn btn-danger"><?= CARD_DELETE ?></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= CARD_CLOSE ?></button>
+                        <button type="button" id="move-btn" class="btn btn-info"><?= CARD_MOVE ?></button>
+                        <button type="button" id="save-btn" class="btn btn-primary"><?= CARD_SAVE ?></button>
                     </div>
                 </div>
             </div>
@@ -183,30 +184,30 @@ if ($pass === APP_PASS) {
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="modal-label">カードの移動/複製</h4>
+                        <h4 class="modal-title" id="modal-label"><?= CARD_MOVE_TITLE ?></h4>
                     </div>
                     <!-- モーダルのボディ -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="board_select" class="col-sm-2 control-label">ボード</label>
+                            <label for="board_select" class="col-sm-2 control-label"><?= CARD_MOVE_BOARD ?></label>
                             <select id="board_select"></select>
                         </div>
                         <div class="form-group">
-                            <label for="panel_select" class="col-sm-2 control-label">パネル</label>
+                            <label for="panel_select" class="col-sm-2 control-label"><?= CARD_MOVE_PANNEL ?></label>
                             <select id="panel_select"></select>
                         </div>
                         <div class="form-group">
                             <div id="selectGroup">
                                 <label for="panel_select" class="col-sm-2 control-label"></label>
-                                <input type="radio" name="q" value="move"> 移動
-                                <input type="radio" name="q" value="copy"> 複製
+                                <input type="radio" name="q" value="move"> <?= CARD_MOVE_MOVE ?>
+                                <input type="radio" name="q" value="copy"> <?= CARD_MOVE_COPY ?>
                             </div>
                         </div>
                     </div>
                     <!-- モーダルのフッタ -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                        <button type="button" id="save-panel-btn" class="btn btn-primary">実行</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= CARD_MOVE_CLOSE ?></button>
+                        <button type="button" id="save-panel-btn" class="btn btn-primary"><?= CARD_MOVE_EXE ?></button>
                     </div>
                 </div>
             </div>
@@ -222,18 +223,18 @@ if ($pass === APP_PASS) {
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="modal-label">ボード編集</h4>
+                        <h4 class="modal-title" id="modal-label"><?= BOARD_EDIT ?></h4>
                     </div>
                     <!-- モーダルのボディ -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="board_title_text" class="col-sm-2 control-label">ボード名</label>
+                            <label for="board_title_text" class="col-sm-2 control-label"><?= BOARD_NAME ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="board_title_text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="board_title_text" class="col-sm-2 control-label">カラー</label>
+                            <label for="board_title_text" class="col-sm-2 control-label"><?= BOARD_COLOR ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="board_color">
                             </div>
@@ -241,9 +242,9 @@ if ($pass === APP_PASS) {
                     </div>
                     <!-- モーダルのフッタ -->
                     <div class="modal-footer">
-                        <button type="button" id="delete-btn" class="btn btn-danger">削除</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                        <button type="button" id="save-btn" class="btn btn-primary">保存</button>
+                        <button type="button" id="delete-btn" class="btn btn-danger"><?= BOARD_DELETE ?></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= BOARD_CLOSE ?></button>
+                        <button type="button" id="save-btn" class="btn btn-primary"><?= BOARD_SAVE ?></button>
                     </div>
                 </div>
             </div>
@@ -259,18 +260,18 @@ if ($pass === APP_PASS) {
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="modal-label">ボード追加</h4>
+                        <h4 class="modal-title" id="modal-label"><?= BOARD_ADD ?></h4>
                     </div>
                     <!-- モーダルのボディ -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="board_new_title_text" class="col-sm-2 control-label">ボード名</label>
+                            <label for="board_new_title_text" class="col-sm-2 control-label"><?= BOARD_NAME ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="board_new_title_text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="board_new_color" class="col-sm-2 control-label">カラー</label>
+                            <label for="board_new_color" class="col-sm-2 control-label"><?= BOARD_COLOR ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="board_new_color">
                             </div>
@@ -278,8 +279,8 @@ if ($pass === APP_PASS) {
                     </div>
                     <!-- モーダルのフッタ -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                        <button type="button" id="save-btn" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= BOARD_CLOSE ?></button>
+                        <button type="button" id="save-btn" class="btn btn-primary"><?= BOARD_SAVE ?></button>
                     </div>
                 </div>
             </div>
@@ -295,12 +296,12 @@ if ($pass === APP_PASS) {
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="modal-label">パネル編集</h4>
+                        <h4 class="modal-title" id="modal-label"><?= EDIT_PANNEL ?></h4>
                     </div>
                     <!-- モーダルのボディ -->
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="fieldName" class="col-sm-2 control-label">名前</label>
+                            <label for="fieldName" class="col-sm-2 control-label"><?= PANEL_NAME ?></label>
                             <div class="col-sm-10">
                                 <input type="text" id="panel_title_text" />
                             </div>
@@ -308,9 +309,9 @@ if ($pass === APP_PASS) {
                     </div>
                     <!-- モーダルのフッタ -->
                     <div class="modal-footer">
-                        <button type="button" id="delete-btn" class="btn btn-danger">削除</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                        <button type="button" id="save-panel-btn" class="btn btn-primary">保存</button>
+                        <button type="button" id="delete-btn" class="btn btn-danger"><?= PANEL_DELETE ?></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= PANEL_CLOSE ?></button>
+                        <button type="button" id="save-panel-btn" class="btn btn-primary"><?= PANEL_SAVE ?></button>
                     </div>
                 </div>
             </div>
@@ -319,20 +320,28 @@ if ($pass === APP_PASS) {
         <!-- タイムアウト通知用モーダル(Remodal) -->
         <div class="remodal" data-remodal-id="modal">
             <button data-remodal-action="close" class="remodal-close"></button>
-            <h1>タイムアウト</h1>
-            <p class="msg">処理に時間がかかっています。<br>しばらく経ってからやり直して下さい。</p>
+            <h1><?= TIMEOUT_TITLE ?></h1>
+            <p class="msg"><?= TIMEOUT_MSG ?></p>
             <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
         </div>
 
         <!-- 検索結果モーダル(Remodal) -->
         <div class="remodal" data-remodal-id="serach_result_modal">
             <button data-remodal-action="close" class="remodal-close"></button>
-            <h1>検索結果</h1>
-            <p>最大100件まで表示します</p>
+            <h1><?= SEARCH_RESULT ?></h1>
+            <p><?= SEARCH_COMMENT ?></p>
             <div id="searchResult"></div>
         </div>
 
         <!-- 編集用モーダルここまで -->
+        <script>
+        var ENTER_KEYWORD = '<?= ENTER_KEYWORD ?>';
+        var CARD_EDIT = '<?= CARD_EDIT ?>';
+        var CARD_VIEW = '<?= CARD_VIEW ?>';
+        var DELETE_PANEL_MSG = '<?= DELETE_PANEL_MSG ?>';
+        var DELETE_CARD_MSG = '<?= DELETE_CARD_MSG ?>';
+        var DELETE_BOARD_MSG = '<?= DELETE_BOARD_MSG ?>';
+        </script>
         <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
