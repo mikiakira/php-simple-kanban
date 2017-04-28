@@ -1,4 +1,13 @@
 <?php
+
+// app.db がなければ処理しない（自動生成はさせない）
+if (!file_exists('app.db')) {
+    echo "Please copy app.template.db and rename it to app.db.<br>";
+    echo "Setup is not comleted.";
+    exit();
+}
+
+
 if (extension_loaded('zlib')) {
     //　ライブラリが存在していたら圧縮する
     ob_start('ob_gzhandler');
