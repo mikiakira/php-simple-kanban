@@ -65,7 +65,7 @@ $en = [
     'PANEL_NAME'       => 'Title',
     'PANEL_DELETE'     => 'Delete',
     'PANEL_CLOSE'      => 'Close',
-    'PANEL_SAVE'       => 'Sace',
+    'PANEL_SAVE'       => 'Save',
     'ADD_CARD'         => 'Add Card',
     'EDIT_CARD'        => 'Card information editing',
     'CARD_TITLE'       => 'Title',
@@ -90,7 +90,7 @@ $en = [
     'SEARCH_COMMENT'   => 'Up to 100 items will be displayed',
     'DELETE_PANEL_MSG' => 'Delete this panel. Is it OK?',
     'DELETE_CARD_MSG'  => 'Delete this card. Is it OK?',
-    'DELETE_BOARD_MSG' => 'Delete this boardl. Is it OK?'
+    'DELETE_BOARD_MSG' => 'Delete this board. Is it OK?'
 ];
 
 foreach ((array)${LANG} as $key => $val) {
