@@ -1,7 +1,7 @@
 <?php
 
 // app.db がなければ処理しない（自動生成はさせない）
-if (!file_exists('app.db')) {
+if (! file_exists('app.db')) {
     echo "Please copy app.template.db and rename it to app.db.<br>";
     echo "Setup is not comleted.";
     exit();
@@ -19,8 +19,8 @@ $apiFunc = new apiFunc();
 $_SESSION["active"] = '';
 
 // Cookie に値がセット済みならPOSTに値を代入する
-if (isset($_COOKIE['pass_word'])) {
-    $pass = $_COOKIE['pass_word'];
+if (isset($_COOKIE['password'])) {
+    $pass = $_COOKIE['password'];
 } else {
     $pass = '';
     $_POST['pass'] = '';
@@ -33,7 +33,7 @@ if ($apiFunc->is_post()) {
     $save = filter_input(INPUT_POST, 'save');
     // 「ログイン情報を記録する」にチェックが入っていたらクッキーを書き込む
     if ($save === 'on') {
-        setcookie('pass_word', $pass, time() + 60 * 60 * 24 * 14);
+        setcookie('password', $pass, time() + 60 * 60 * 24 * 14);
     }
 }
 
