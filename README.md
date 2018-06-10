@@ -36,6 +36,9 @@ it can be started immediately by just rewriting the password with the setting fi
 ## Copyright and license
 Code copyright 2017 the Web Atelier Midori Inc. Code released under the MIT License.
 
+## Donation
+You can use this software for free, but I am seeking donations.
+https://PayPal.Me/ateliermidori/500
 
 ## An explanation of Japanese
 For commentary on Japanese please see [official blog] (https://web-atelier-midori.com/blog/php/1817/)
