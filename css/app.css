@@ -42,6 +42,10 @@ div#card_search {
     width: 200px;
 }
 
+#contents_view {
+    word-wrap: break-word;
+}
+
 input#card_title_text {
     width: 100%;
 }
