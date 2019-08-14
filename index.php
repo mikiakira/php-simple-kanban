@@ -60,7 +60,7 @@ if ($pass === APP_PASS) {
         <link rel="stylesheet" href="css/spectrum.min.css">
         <link rel="stylesheet" href="css/remodal.css">
         <link rel="stylesheet" href="css/remodal-default-theme.css">
-        <link rel="stylesheet" href="css/app.min.css" />
+        <link rel="stylesheet" href="css/app.min.css?201908140915" />
         <link rel="icon" type="image/x-icon" href="favicon.png">
     </head>
     <body>

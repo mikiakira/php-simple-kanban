@@ -36,9 +36,18 @@ div#card_search {
     text-align: left;
     padding: 0;
     border: 0;
-    input.form-control.searchbox {
-        width: 120px;
-    }
+}
+
+#card_search input.form-control.searchbox {
+    width: 200px;
+}
+
+input#card_title_text {
+    width: 100%;
+}
+
+textarea#contents {
+    width: 100%;
 }
 
 #panel_area {
