@@ -50,7 +50,7 @@ if ($pass === APP_PASS) {
 ?>
 
 <!doctype html>
-<html lang="ja">
+<html lang="it">
     <head>
         <meta charset="utf-8" />
         <title>php-simple-kanban</title>
@@ -94,7 +94,7 @@ if ($pass === APP_PASS) {
                 <div id="panel_add" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<?= ADD_PANEL ?></div>
                 <div id="card_search" class="btn btn-default">
                     <div class="input-group">
-                        <input class="form-control searchbox" placeholder="Search for...">
+                        <input class="form-control searchbox" placeholder="Search...">
                         <span class="input-group-btn"><button class="btn btn-default" id="searchExe" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></span>
                     </div>
                 </div>
@@ -342,7 +342,7 @@ if ($pass === APP_PASS) {
         var DELETE_CARD_MSG = '<?= DELETE_CARD_MSG ?>';
         var DELETE_BOARD_MSG = '<?= DELETE_BOARD_MSG ?>';
         </script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script><!---->
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
         <script src="js/spectrum.min.js"></script>

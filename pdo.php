@@ -6,7 +6,7 @@
 
 
 // 文字化け対策
-mb_language('ja');
+mb_language('it');
 mb_internal_encoding("UTF-8") ;
 
 require_once("class/apiFunc.php");
@@ -139,6 +139,10 @@ if ($apiFunc->is_ajax() ){
         }
 
         // 並び替え
+        // TODO to verify
+        // with this error I got a false timeout error
+        // without just losing capability to save a Panel reorder
+        /* */
         if($action === "sort"){
             $n = 1;
             $arrays = json_decode($title, true);
@@ -147,6 +151,7 @@ if ($apiFunc->is_ajax() ){
                 $n++;
             }
         }
+        /* */
     }
 
     /**
