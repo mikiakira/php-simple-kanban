@@ -93,6 +93,53 @@ $en = [
     'DELETE_BOARD_MSG' => 'Delete this board. Is it OK?'
 ];
 
+$it = [
+    'LOGIN_COOKIE_MSG' => 'Salva Login',
+    'LOGIN_BUTTON'     => 'Login',
+    'BOARD'            => 'Board',
+    'ADD_BOARD'        => 'Nuova Board',
+    'ADD_PANEL'        => 'Nuovo Pannello',
+    'LOGOUT'           => 'Logout',
+    'ENTER_KEYWORD'    => 'digita',
+    'BOARD_EDIT'       => 'Modifica Board',
+    'BOARD_NAME'       => 'Nome',
+    'BOARD_COLOR'      => 'Colore',
+    'BOARD_DELETE'     => 'Cancella',
+    'BOARD_CLOSE'      => 'Chiudi',
+    'BOARD_SAVE'       => 'Salva',
+    'BOARD_ADD'        => 'Aggiungi a Board',
+    'EDIT_PANNEL'      => 'Modifica Pannello',
+    'PANEL_NAME'       => 'Titolo',
+    'PANEL_DELETE'     => 'Cancella',
+    'PANEL_CLOSE'      => 'Chiudi',
+    'PANEL_SAVE'       => 'Salva',
+    'ADD_CARD'         => 'Aggiungi Card',
+    'EDIT_CARD'        => 'Modifica Card',
+    'CARD_TITLE'       => 'Titolo',
+    'COLOR_LABEL'      => 'Etichetta',
+    'CARD_CONTENTS'    => 'Contenuto',
+    'CARD_EDIT'        => 'Modifica',
+    'CARD_VIEW'        => 'Visualizza',
+    'CARD_DELETE'      => 'Cancella',
+    'CARD_MOVE'        => 'Muovi / Copia',
+    'CARD_CLOSE'       => 'Chiudi',
+    'CARD_SAVE'        => 'Salva',
+    'CARD_MOVE_TITLE'  => 'Muovi / Copia Card',
+    'CARD_MOVE_BOARD'  => 'Board',
+    'CARD_MOVE_PANNEL' => 'Pannelli',
+    'CARD_MOVE_MOVE'   => 'Muovi',
+    'CARD_MOVE_COPY'   => 'Copia',
+    'CARD_MOVE_CLOSE'  => 'Chiudi',
+    'CARD_MOVE_EXE'    => 'Esegui',
+    'TIMEOUT_TITLE'    => 'TimeOut',
+    'TIMEOUT_MSG'      => 'Il processo sembra durare troppo.<br>Perfavore riprova più tardi.',
+    'SEARCH_RESULT'    => 'Risultati di Ricerca',
+    'SEARCH_COMMENT'   => 'Massimo 100 risultati.',
+    'DELETE_PANEL_MSG' => 'Sei sicuro di voler cancellare questo Pannello?',
+    'DELETE_CARD_MSG'  => 'Sei sicuro di voler cancellare questa Card?',
+    'DELETE_BOARD_MSG' => 'Sei sicuro di voler cancellare questa Board?'
+];
+
 foreach ((array)${LANG} as $key => $val) {
     define($key, $val);
 }
